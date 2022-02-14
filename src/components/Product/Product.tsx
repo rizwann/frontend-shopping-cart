@@ -8,7 +8,7 @@ const Product = ({ product }: { product: ProductType }) => {
     <li>
       <div className="product">
         <a href={"#" + product.id}>
-          <img src={product.image} alt={product.title} />
+          <img src={product.image} alt={product.title} /> <br /> <br />
           <p>{product.title}</p>
         </a>
         <div className="product-price">
