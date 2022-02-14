@@ -15,8 +15,8 @@ li {
   height: 100%;
 }
 .product img {
-  max-width: 30rem;
-  max-height: 30rem;
+  max-width: 26rem;
+  max-height: 24rem;
   object-fit: contain;
 }
 .product p {
