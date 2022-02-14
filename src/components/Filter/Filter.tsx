@@ -1,3 +1,4 @@
+import { Form } from "react-bootstrap";
 import "./Filter.css";
 
 type FilterProps = {
@@ -41,12 +42,16 @@ const Filter = ({
         </select>
       </div>
       <div className="search">
-        <input
-          type="text"
-          value={keyword}
-          placeholder="Search product..."
-          onChange={handleSearchProducts}
-        />
+        <Form className="d-flex nv-search">
+          <input
+            type="text"
+            placeholder="Search product.."
+            className="me-2 sm nv-input"
+            aria-label="Search"
+            value={keyword}
+            onChange={handleSearchProducts}
+          />
+        </Form>
       </div>
     </div>
   );
