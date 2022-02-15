@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ProductType } from "../../types";
 import Filter from "../Filter/Filter";
 import Footer from "../Footer/Footer";
-import Products from "../Footer/Products/Products";
+import Products from "../Products/Products";
 
 const Home = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
