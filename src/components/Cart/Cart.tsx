@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Fade } from "react-awesome-reveal";
 import { Button } from "react-bootstrap";
 import { CartItemType } from "../../types";
 import formatCurrency from "../../utilities";
@@ -62,55 +63,57 @@ const Cart = ({
               <Button
                 variant="outline-success"
                 size="lg"
-                onClick={() => setShowCheckoutForm(true)}
+                onClick={() => setShowCheckoutForm(!showCheckoutForm)}
               >
-                Checkout
+                {showCheckoutForm ? "Hide Checkout" : "Checkout"}
               </Button>
             </div>
           </div>
-          {showCheckoutForm && (
-            <div className="cart">
-              <form onSubmit={createOrder}>
-                <ul className="form-container">
-                  <li>
-                    <label>Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </li>
-                  <li>
-                    <label>Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </li>
-                  <li>
-                    <label>Address</label>
-                    <input
-                      type="text"
-                      name="address"
-                      required
-                      onChange={(e) => setAddress(e.target.value)}
-                    />
-                  </li>
-                  <li>
-                    <Button
-                      type="submit"
-                      variant="outline-success"
-                      className="button"
-                    >
-                      Place Order
-                    </Button>
-                  </li>
-                </ul>
-              </form>
-            </div>
+          {showCheckoutForm && ( // if showCheckoutForm is true, show the form
+            <Fade triggerOnce cascade direction="right" duration={1000}>
+              <div className="cart">
+                <form onSubmit={createOrder}>
+                  <ul className="form-container">
+                    <li>
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </li>
+                    <li>
+                      <label>Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </li>
+                    <li>
+                      <label>Address</label>
+                      <input
+                        type="text"
+                        name="address"
+                        required
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                    </li>
+                    <li>
+                      <Button
+                        type="submit"
+                        variant="outline-success"
+                        className="button"
+                      >
+                        Place Order
+                      </Button>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </Fade>
           )}
         </div>
       )}
