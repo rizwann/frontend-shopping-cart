@@ -36,15 +36,16 @@ const Home = () => {
   ): void => {
     setCategory(ev.target.value);
 
-    const filteredProducts = [...products];
+    const filteredProductsCopy = [...products];
     if (ev.target.value === "all") {
-      setFilteredProducts(filteredProducts);
+      setFilteredProducts(filteredProductsCopy);
     } else {
       setFilteredProducts(
-        filteredProducts.filter(
+        filteredProductsCopy.filter(
           (product) => product.category === ev.target.value
         )
       );
+      setSort("");
     }
   };
 
