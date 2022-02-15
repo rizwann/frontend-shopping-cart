@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import { Button } from "react-bootstrap";
 import StarRatings from "react-star-ratings";
 
@@ -13,35 +14,37 @@ const Product = ({
   handleAddToCart: (product: ProductType) => void;
 }) => {
   return (
-    <li>
-      <div className="product">
-        <a href={"#" + product.id}>
-          <img src={product.image} alt={product.title} /> <br /> <br />
-          <p>{product.title}</p>
-          <div className="rating">
-            <StarRatings
-              rating={product?.rating.rate}
-              starRatedColor="blue"
-              numberOfStars={5}
-              name="rating"
-              starDimension="15px"
-              starSpacing="5px"
-            />{" "}
-            <span>{product.rating.count} reviews </span>
+    <Fade triggerOnce cascade direction="left" duration={2000}>
+      <li>
+        <div className="product">
+          <a href={"#" + product.id}>
+            <img src={product.image} alt={product.title} /> <br /> <br />
+            <p>{product.title}</p>
+            <div className="rating">
+              <StarRatings
+                rating={product?.rating.rate}
+                starRatedColor="blue"
+                numberOfStars={5}
+                name="rating"
+                starDimension="15px"
+                starSpacing="5px"
+              />{" "}
+              <span>{product.rating.count} reviews </span>
+            </div>
+          </a>
+          <div className="product-price">
+            <div>{formatCurrency(product.price)}</div>
+            <Button
+              variant="warning"
+              className="button"
+              onClick={() => handleAddToCart(product)}
+            >
+              Add to cart
+            </Button>
           </div>
-        </a>
-        <div className="product-price">
-          <div>{formatCurrency(product.price)}</div>
-          <Button
-            variant="warning"
-            className="button"
-            onClick={() => handleAddToCart(product)}
-          >
-            Add to cart
-          </Button>
         </div>
-      </div>
-    </li>
+      </li>
+    </Fade>
   );
 };
 

@@ -10,6 +10,7 @@ const Products = ({
   handleAddToCart: (product: ProductType) => void;
 }) => {
   return (
+    // <Fade triggerOnce cascade direction="left" duration={2000}>
     <div>
       <ul className="products">
         {products?.map((product) => (
@@ -21,6 +22,7 @@ const Products = ({
         ))}
       </ul>
     </div>
+    // </Fade>
   );
 };
 
