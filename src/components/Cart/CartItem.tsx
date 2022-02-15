@@ -22,7 +22,6 @@ const CartItem = ({
           <Button
             style={{ marginLeft: "15px" }}
             variant="outline-danger"
-            className="button"
             onClick={() => handleRemoveFromCart(cartItem)}
           >
             Remove
