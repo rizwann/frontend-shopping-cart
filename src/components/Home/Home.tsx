@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ProductType } from "../../types";
+import { CartItemType, ProductType } from "../../types";
+import Cart from "../Cart/Cart";
 import Filter from "../Filter/Filter";
 import Footer from "../Footer/Footer";
 import Products from "../Products/Products";
@@ -10,8 +11,38 @@ const Home = () => {
   const [sort, setSort] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [keyword, setKeyword] = useState<string>("");
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
 
   const api = "https://fakestoreapi.com/products/";
+
+  const handleAddToCart = (product: ProductType): void => {
+    const cartItemsCopy = [...cartItems];
+    let alreadyInCart = false;
+    cartItemsCopy.forEach((item) => {
+      if (item.id === product.id) {
+        item.inCartQuantity += 1;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      cartItemsCopy.push({ ...product, inCartQuantity: 1 });
+    }
+    setCartItems(cartItemsCopy);
+  };
+
+  const handleRemoveFromCart = (cartItem: CartItemType): void => {
+    const cartItemsCopy = [...cartItems];
+    cartItemsCopy.forEach((item) => {
+      if (item.id === cartItem.id) {
+        item.inCartQuantity -= 1;
+        if (item.inCartQuantity === 0) {
+          cartItemsCopy.splice(cartItemsCopy.indexOf(item), 1);
+        }
+      }
+    });
+
+    setCartItems(cartItemsCopy);
+  };
 
   const handleSortProducts = (
     ev: React.ChangeEvent<HTMLSelectElement>
@@ -88,9 +119,17 @@ const Home = () => {
               handleSearchProducts={handleSearchProducts}
               keyword={keyword}
             />
-            <Products products={filteredProducts} />
+            <Products
+              products={filteredProducts}
+              handleAddToCart={handleAddToCart}
+            />
           </div>
-          <div className="sidebar">Cart Items</div>
+          <div className="sidebar">
+            <Cart
+              cartItems={cartItems}
+              handleRemoveFromCart={handleRemoveFromCart}
+            />
+          </div>
         </div>
       </main>
       <Footer />

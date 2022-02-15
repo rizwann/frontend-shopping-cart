@@ -5,7 +5,13 @@ import { ProductType } from "../../types";
 import formatCurrency from "../../utilities";
 import "./Product.css";
 
-const Product = ({ product }: { product: ProductType }) => {
+const Product = ({
+  product,
+  handleAddToCart,
+}: {
+  product: ProductType;
+  handleAddToCart: (product: ProductType) => void;
+}) => {
   return (
     <li>
       <div className="product">
@@ -26,7 +32,11 @@ const Product = ({ product }: { product: ProductType }) => {
         </a>
         <div className="product-price">
           <div>{formatCurrency(product.price)}</div>
-          <Button variant="warning" className="button">
+          <Button
+            variant="warning"
+            className="button"
+            onClick={() => handleAddToCart(product)}
+          >
             Add to cart
           </Button>
         </div>

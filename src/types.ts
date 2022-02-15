@@ -1,4 +1,4 @@
-export type ProductType = {
+interface ProductInterface {
   id: number;
   title: string;
   price: number;
@@ -6,4 +6,8 @@ export type ProductType = {
   category: string;
   image: string;
   rating: { rate: number; count: number };
-};
+}
+
+export type ProductType = ProductInterface;
+
+export type CartItemType = ProductInterface & { inCartQuantity: number };
