@@ -44,6 +44,10 @@ const Home = () => {
     setCartItems(cartItemsCopy);
   };
 
+  const removeAllFromCart = (): void => {
+    setCartItems([]);
+  };
+
   const handleSortProducts = (
     ev: React.ChangeEvent<HTMLSelectElement>
   ): void => {
@@ -128,6 +132,7 @@ const Home = () => {
             <Cart
               cartItems={cartItems}
               handleRemoveFromCart={handleRemoveFromCart}
+              removeAllFromCart={removeAllFromCart}
             />
           </div>
         </div>
