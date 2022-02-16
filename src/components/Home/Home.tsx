@@ -74,6 +74,7 @@ const Home = () => {
     const filteredProductsCopy = [...products];
     if (ev.target.value === "all") {
       setFilteredProducts(filteredProductsCopy);
+      setSort("");
     } else {
       setFilteredProducts(
         filteredProductsCopy.filter(

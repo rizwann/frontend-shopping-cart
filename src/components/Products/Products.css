@@ -7,3 +7,38 @@
   list-style: none;
   flex-wrap: wrap;
 }
+.cat {
+  -webkit-box-shadow: 5px 5px 19px 1px rgba(0, 0, 0, 0.22);
+  box-shadow: 5px 5px 19px 1px rgba(0, 0, 0, 0.22);
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-transform: capitalize;
+}
+
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 96vw;
+  margin-top: 50px;
+  align-items: center;
+}
+
+.product-details img {
+  max-width: 40rem;
+  max-height: 35rem;
+  object-fit: cover;
+  margin-right: 30px;
+}
+
+.product-details-desc {
+  flex: 1 1;
+  margin: 1rem;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  z-index: 100;
+  right: 1rem;
+}

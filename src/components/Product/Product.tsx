@@ -9,17 +9,24 @@ import "./Product.css";
 const Product = ({
   product,
   handleAddToCart,
+  openModal,
 }: {
   product: ProductType;
   handleAddToCart: (product: ProductType) => void;
+  openModal: (product: ProductType) => void;
 }) => {
   return (
     <Fade triggerOnce cascade direction="left" duration={2000}>
       <li>
         <div className="product">
           <a href={"#" + product.id}>
-            <img src={product.image} alt={product.title} /> <br /> <br />
-            <p>{product.title}</p>
+            <img
+              src={product.image}
+              alt={product.title}
+              onClick={() => openModal(product)}
+            />{" "}
+            <br /> <br />
+            <p onClick={() => openModal(product)}>{product.title}</p>
             <div className="rating">
               <StarRatings
                 rating={product?.rating.rate}

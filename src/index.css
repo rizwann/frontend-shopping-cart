@@ -12,9 +12,13 @@ header {
   display: flex;
   align-items: center;
   grid-area: header;
-  background-color: #080606;
+  background-color: #376190;
   color: white;
   padding: 0.5rem;
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  z-index: 4;
 }
 header a {
   color: white;
