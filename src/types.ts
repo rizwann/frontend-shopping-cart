@@ -13,6 +13,11 @@ export type ProductType = ProductInterface;
 
 export type CartItemType = ProductInterface & { inCartQuantity: number };
 
+export type darkModeType = {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+};
+
 export type initialStateType = {
   products: ProductType[];
   cartItems: ProductType[];

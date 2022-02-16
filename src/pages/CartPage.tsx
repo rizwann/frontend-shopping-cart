@@ -1,15 +1,16 @@
 import { useSelector } from "react-redux";
 import CartPageItem from "./CartPageItem";
 import { RootStateType } from "../redux/reducers/rootReducer";
-import { ProductType } from "../types";
+import { darkModeType, ProductType } from "../types";
 import formatCurrency from "../utilities";
 import { Link } from "react-router-dom";
 import { BsCartDash, BsCartPlus } from "react-icons/bs";
 import Footer from "../components/Footer/Footer";
 import { useState } from "react";
 import CreateOrder from "../components/Cart/CreateOrder";
+import Toggle from "react-toggle";
 
-function CartPage() {
+function CartPage({ toggleDarkMode, darkMode }: darkModeType) {
   const [showCheckoutForm, setShowCheckoutForm] = useState<boolean>(false);
 
   const cartItems = useSelector(
@@ -22,14 +23,24 @@ function CartPage() {
         <div>
           <a href="/cart"> Checkout Page</a>
         </div>
-        <Link to="/cart" className="cartIcon">
-          {cartItems.length > 0 ? <BsCartPlus /> : <BsCartDash />}
-          {cartItems.length > 0 ? (
-            <span className="cart-number">{cartItems.length}</span>
-          ) : (
-            ""
-          )}
-        </Link>
+        <div>
+          <Link to="/cart" className="cartIcon">
+            {cartItems.length > 0 ? <BsCartPlus /> : <BsCartDash />}
+            {cartItems.length > 0 ? (
+              <span className="cart-number">{cartItems.length}</span>
+            ) : (
+              ""
+            )}
+          </Link>
+          <Toggle
+            icons={{
+              checked: "☾",
+              unchecked: "☽",
+            }}
+            defaultChecked={darkMode}
+            onChange={toggleDarkMode}
+          />
+        </div>
       </header>
 
       <section className="section-content padding-y">
@@ -98,7 +109,9 @@ function CartPage() {
             </main>
             <aside className="col-md-3" style={{ marginTop: "60px" }}>
               <div className="card mb-3">
-                <div className="card-body">
+                <div
+                  className={darkMode ? "card-body dark-checkout" : "card-body"}
+                >
                   <form>
                     <div className="form-group">
                       <label>Have coupon?</label>
@@ -118,7 +131,9 @@ function CartPage() {
                 </div>
               </div>
               <div className="card">
-                <div className="card-body">
+                <div
+                  className={darkMode ? "card-body dark-checkout" : "card-body"}
+                >
                   <dl className="dlist-align">
                     <dt>Total price:</dt>
                     <dd className="text-right">
@@ -173,7 +188,13 @@ function CartPage() {
           <CreateOrder origin="checkoutpage" />
         </div>
       )}
-      <section className="section-name bg padding-y">
+      <section
+        className={
+          darkMode
+            ? "section-name bg padding-y dark-checkout"
+            : "section-name bg padding-y"
+        }
+      >
         <div className="container">
           <h6>Payment and refund policy</h6>
           <p>
