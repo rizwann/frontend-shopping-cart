@@ -42,7 +42,11 @@ const Products = ({
       {modalItem && (
         <Modal isOpen={true} onRequestClose={closeModal}>
           <Zoom>
-            <Button onClick={closeModal} className="close-modal">
+            <Button
+              onClick={closeModal}
+              className="close-modal"
+              variant="outline-danger"
+            >
               X
             </Button>
             <div className="product-details">
