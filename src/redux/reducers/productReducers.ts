@@ -20,6 +20,8 @@ export default function productReducer(
         products: action.payload.products,
         filteredProducts: action.payload.products,
         keyword: "",
+        sort: "",
+        category: "",
       };
 
     case "SEARCH_PRODUCTS":

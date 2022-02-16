@@ -36,7 +36,7 @@ const Cart = () => {
     );
     setShowCheckoutForm(false);
     handleRemoveAllFromCart();
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (
