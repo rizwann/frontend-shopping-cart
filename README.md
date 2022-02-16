@@ -13,7 +13,10 @@ A simple shopping cart app, built with these following technologies :
 ### Features
 
 <li>User can browse different products by category like Men's Wear, Jewelry so on</li>
+<li>User can sort their homepage according to the product price or alphabetic order</li>
 <li>User can add product to the cart and can edit in checkout page</li>
 <li>User can confirm order [fake]</li>
 
 #### For the product data I've used a free API http://fakestoreapi.com/
+
+### This web app is not fully mobile responsive yet.

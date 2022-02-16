@@ -24,3 +24,20 @@
   color: #333333;
   outline: none;
 }
+
+@media (max-width: 576px) {
+  .filter {
+    flex-direction: column;
+    height: auto;
+  }
+  .filter div {
+    margin-bottom: 1rem;
+  }
+  .search input {
+    width: 100%;
+  }
+  .filter-count,
+  .filter span {
+    color: #077a67;
+  }
+}

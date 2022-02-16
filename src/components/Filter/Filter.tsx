@@ -40,7 +40,7 @@ const Filter = () => {
     <div className="filter">
       <div className="filter-count">{count} Products.</div>
       <div className="filter-sort">
-        Sort{" "}
+        <span>Sort: </span> &nbsp;
         <select value={sort} onChange={handleSortProducts}>
           <option value="ASC">Default</option>
           <option value="DESC">Name (Z-A)</option>
@@ -49,7 +49,7 @@ const Filter = () => {
         </select>
       </div>
       <div className="filter-cat">
-        Categories{" "}
+        <span>Categories: </span> &nbsp;
         <select value={category} onChange={handleFilterCategory}>
           <option value="all">All</option>
           <option value="electronics">Electronics</option>
