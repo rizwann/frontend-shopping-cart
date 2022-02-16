@@ -30,7 +30,7 @@ const Product = ({
             <div className="rating">
               <StarRatings
                 rating={product?.rating.rate}
-                starRatedColor="blue"
+                starRatedColor="orange"
                 numberOfStars={5}
                 name="rating"
                 starDimension="15px"
