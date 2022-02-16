@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BsCartDash, BsCartPlus } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getProductsAsync } from "../../redux/actions/productActions";
 import { RootStateType } from "../../redux/reducers/rootReducer";
 
@@ -25,14 +26,14 @@ const Home = () => {
         <div>
           <a href="/"> React Shopping Cart</a>
         </div>
-        <div className="cartIcon">
+        <Link to="/cart" className="cartIcon">
           {cart.length > 0 ? <BsCartPlus /> : <BsCartDash />}
           {cart.length > 0 ? (
             <span className="cart-number">{cart.length}</span>
           ) : (
             ""
           )}
-        </div>
+        </Link>
       </header>
       <main>
         <div className="content">

@@ -20,7 +20,7 @@
   object-fit: cover;
 }
 .product p {
-  color: rgb(122, 104, 62);
+  color: rgb(10, 8, 1);
 }
 .product-price {
   display: flex;
@@ -49,7 +49,7 @@
 }
 
 .rating span {
-  color: #f0c040;
+  color: #a3956e;
 }
 .button {
   padding: 0.5rem 1rem;
