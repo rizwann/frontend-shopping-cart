@@ -6,6 +6,7 @@ interface ProductInterface {
   category: string;
   image: string;
   rating: { rate: number; count: number };
+  inCartQuantity?: number;
 }
 
 export type ProductType = ProductInterface;
@@ -14,7 +15,7 @@ export type CartItemType = ProductInterface & { inCartQuantity: number };
 
 export type initialStateType = {
   products: ProductType[];
-  cart: CartItemType[];
+  cartItems: ProductType[];
   filteredProducts: ProductType[];
   keyword: string;
   sort: string;
@@ -48,8 +49,29 @@ export type FilterCategoryActionType = {
   };
 };
 
+export type AddToCartActionType = {
+  type: "ADD_TO_CART";
+  payload: {
+    product: ProductType;
+  };
+};
+
+export type RemoveFromCartActionType = {
+  type: "REMOVE_FROM_CART";
+  payload: {
+    product: ProductType;
+  };
+};
+
+export type RemoveAllFromCartActionType = {
+  type: "REMOVE_ALL_FROM_CART";
+};
+
 export type ProductActionType =
   | GetProductsActionType
   | SearchProductsActionType
   | SortProductsActionType
-  | FilterCategoryActionType;
+  | FilterCategoryActionType
+  | AddToCartActionType
+  | RemoveFromCartActionType
+  | RemoveAllFromCartActionType;

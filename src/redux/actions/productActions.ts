@@ -1,14 +1,20 @@
 import { Dispatch } from "redux";
 import {
+  AddToCartActionType,
   FilterCategoryActionType,
   GetProductsActionType,
   ProductType,
+  RemoveAllFromCartActionType,
+  RemoveFromCartActionType,
   SearchProductsActionType,
   SortProductsActionType,
 } from "../../types";
 import {
+  ADD_TO_CART,
   FILTER_CATEGORY,
   GET_PRODUCTS,
+  REMOVE_ALL_FROM_CART,
+  REMOVE_FROM_CART,
   SEARCH_PRODUCTS,
   SORT_PRODUCTS,
 } from "./actionTypes";
@@ -54,5 +60,29 @@ export function filterCategory(category: string): FilterCategoryActionType {
     payload: {
       category,
     },
+  };
+}
+
+export function addToCart(product: ProductType): AddToCartActionType {
+  return {
+    type: ADD_TO_CART,
+    payload: {
+      product,
+    },
+  };
+}
+
+export function removeFromCart(product: ProductType): RemoveFromCartActionType {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: {
+      product,
+    },
+  };
+}
+
+export function removeAllFromCart(): RemoveAllFromCartActionType {
+  return {
+    type: REMOVE_ALL_FROM_CART,
   };
 }

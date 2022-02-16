@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProductType } from "../../types";
+import { CartItemType, ProductType } from "../../types";
 import Product from "../Product/Product";
 import "./Products.css";
 import Modal from "react-modal";
@@ -7,17 +7,22 @@ import { Zoom } from "react-awesome-reveal";
 import { Button } from "react-bootstrap";
 import StarRatings from "react-star-ratings";
 import formatCurrency from "../../utilities";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStateType } from "../../redux/reducers/rootReducer";
+import { addToCart } from "../../redux/actions/productActions";
 
 Modal.setAppElement("#root");
 
-const Products = ({
-  products,
-  handleAddToCart,
-}: {
-  products: ProductType[];
-  handleAddToCart: (product: ProductType) => void;
-}) => {
-  const [modalItem, setModalItem] = useState<ProductType | null>(null);
+const Products = () => {
+  const [modalItem, setModalItem] = useState<any | null>(null);
+  const products = useSelector(
+    (state: RootStateType) => state.productReducer.filteredProducts
+  );
+  const dispatch = useDispatch();
+
+  function handleAddToCart(product: ProductType): void {
+    dispatch(addToCart(product));
+  }
 
   const openModal = (product: ProductType): void => {
     setModalItem(product);

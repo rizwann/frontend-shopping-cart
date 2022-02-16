@@ -1,14 +1,14 @@
 import { Fade } from "react-awesome-reveal";
 import { Button } from "react-bootstrap";
-import { CartItemType } from "../../types";
+import { CartItemType, ProductType } from "../../types";
 import formatCurrency from "../../utilities";
 
 const CartItem = ({
   cartItem,
   handleRemoveFromCart,
 }: {
-  cartItem: CartItemType;
-  handleRemoveFromCart: (cartItem: CartItemType) => void;
+  cartItem: ProductType;
+  handleRemoveFromCart: (cartItem: ProductType) => void;
 }) => {
   return (
     <Fade triggerOnce cascade direction="left" duration={1000}>

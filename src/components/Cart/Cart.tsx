@@ -1,24 +1,34 @@
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Button } from "react-bootstrap";
-import { CartItemType } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeAllFromCart,
+  removeFromCart,
+} from "../../redux/actions/productActions";
+import { RootStateType } from "../../redux/reducers/rootReducer";
+import { ProductType } from "../../types";
 import formatCurrency from "../../utilities";
 import "./Cart.css";
 import CartItem from "./CartItem";
 
-const Cart = ({
-  cartItems,
-  handleRemoveFromCart,
-  removeAllFromCart,
-}: {
-  cartItems: CartItemType[];
-  handleRemoveFromCart: (cartItem: CartItemType) => void;
-  removeAllFromCart: () => void;
-}) => {
+const Cart = () => {
   const [showCheckoutForm, setShowCheckoutForm] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const dispatch = useDispatch();
+  const cartItems = useSelector(
+    (state: RootStateType) => state.productReducer.cartItems
+  );
+
+  function handleRemoveFromCart(product: ProductType): void {
+    dispatch(removeFromCart(product));
+  }
+  function handleRemoveAllFromCart(): void {
+    dispatch(removeAllFromCart());
+  }
 
   const createOrder = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +36,7 @@ const Cart = ({
       "Thank you! Order created for " + name + " against the email: " + email
     );
     setShowCheckoutForm(false);
-    removeAllFromCart();
+    handleRemoveAllFromCart();
   };
 
   return (
@@ -57,7 +67,7 @@ const Cart = ({
               <div>
                 Total: &nbsp;
                 {formatCurrency(
-                  cartItems.reduce((a, b) => a + b.price * b.inCartQuantity, 0)
+                  cartItems.reduce((a, b) => a + b.price * b.inCartQuantity!, 0)
                 )}
               </div>
               <Button
