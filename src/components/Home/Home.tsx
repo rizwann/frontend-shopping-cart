@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { BsCartDash, BsCartPlus } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import { getProductsAsync } from "../../redux/actions/productActions";
+import { RootStateType } from "../../redux/reducers/rootReducer";
 
 import Cart from "../Cart/Cart";
 import Filter from "../Filter/Filter";
@@ -9,48 +11,28 @@ import Products from "../Products/Products";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const cart = useSelector(
+    (state: RootStateType) => state.productReducer.cartItems
+  );
 
   useEffect(() => {
     dispatch(getProductsAsync());
   }, [dispatch]);
 
-  // const handleAddToCart = (product: ProductType): void => {
-  //   const cartItemsCopy = [...cartItems];
-  //   let alreadyInCart = false;
-  //   cartItemsCopy.forEach((item) => {
-  //     if (item.id === product.id) {
-  //       item.inCartQuantity += 1;
-  //       alreadyInCart = true;
-  //     }
-  //   });
-  //   if (!alreadyInCart) {
-  //     cartItemsCopy.push({ ...product, inCartQuantity: 1 });
-  //   }
-  //   setCartItems(cartItemsCopy);
-  // };
-
-  // const handleRemoveFromCart = (cartItem: ProductType): void => {
-  //   const cartItemsCopy = [...cartItems];
-  //   cartItemsCopy.forEach((item) => {
-  //     if (item.id === cartItem.id) {
-  //       item.inCartQuantity! -= 1;
-  //       if (item.inCartQuantity === 0) {
-  //         cartItemsCopy.splice(cartItemsCopy.indexOf(item), 1);
-  //       }
-  //     }
-  //   });
-
-  //   setCartItems(cartItemsCopy);
-  // };
-
-  // const removeAllFromCart = (): void => {
-  //   setCartItems([]);
-  // };
-
   return (
     <div className="app-container">
       <header>
-        <a href="/"> React Shopping Cart</a>
+        <div>
+          <a href="/"> React Shopping Cart</a>
+        </div>
+        <div className="cartIcon">
+          {cart.length > 0 ? <BsCartPlus /> : <BsCartDash />}
+          {cart.length > 0 ? (
+            <span className="cart-number">{cart.length}</span>
+          ) : (
+            ""
+          )}
+        </div>
       </header>
       <main>
         <div className="content">

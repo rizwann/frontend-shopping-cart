@@ -19,9 +19,12 @@ header {
   height: 60px;
   width: 100%;
   z-index: 4;
+  justify-content: space-between;
 }
 header a {
   color: white;
+  font-size: 2.5rem;
+  margin-left: 15px;
 }
 main {
   grid-area: main;
@@ -49,4 +52,35 @@ a:hover {
 
 .sidebar {
   flex: 1 20rem;
+}
+.cartIcon {
+  position: relative;
+  font-size: 35px;
+
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.cart-number {
+  position: absolute;
+  top: 3px;
+  right: -5px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  color: #000000;
+  font-weight: 600;
+}
+
+.cart-number:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+.cartIcon:hover {
+  color: rgb(204, 142, 120);
 }
