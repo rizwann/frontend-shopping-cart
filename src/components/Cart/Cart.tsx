@@ -3,7 +3,6 @@ import { Fade } from "react-awesome-reveal";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addToCart,
   removeAllFromCart,
   removeFromCart,
 } from "../../redux/actions/productActions";
@@ -37,6 +36,7 @@ const Cart = () => {
     );
     setShowCheckoutForm(false);
     handleRemoveAllFromCart();
+    // window.location.reload();
   };
 
   return (

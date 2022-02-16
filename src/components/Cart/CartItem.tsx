@@ -1,6 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 import { Button } from "react-bootstrap";
-import { CartItemType, ProductType } from "../../types";
+import { ProductType } from "../../types";
 import formatCurrency from "../../utilities";
 
 const CartItem = ({

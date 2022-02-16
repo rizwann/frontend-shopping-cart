@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CartItemType, ProductType } from "../../types";
+import { ProductType } from "../../types";
 import Product from "../Product/Product";
 import "./Products.css";
 import Modal from "react-modal";
