@@ -1,6 +1,14 @@
+import { useState } from "react";
 import { ProductType } from "../../types";
 import Product from "../Product/Product";
 import "./Products.css";
+import Modal from "react-modal";
+import { Zoom } from "react-awesome-reveal";
+import { Button } from "react-bootstrap";
+import StarRatings from "react-star-ratings";
+import formatCurrency from "../../utilities";
+
+Modal.setAppElement("#root");
 
 const Products = ({
   products,
@@ -9,8 +17,17 @@ const Products = ({
   products: ProductType[];
   handleAddToCart: (product: ProductType) => void;
 }) => {
+  const [modalItem, setModalItem] = useState<ProductType | null>(null);
+
+  const openModal = (product: ProductType): void => {
+    setModalItem(product);
+  };
+
+  const closeModal = () => {
+    setModalItem(null);
+  };
+
   return (
-    // <Fade triggerOnce cascade direction="left" duration={2000}>
     <div>
       <ul className="products">
         {products?.map((product) => (
@@ -18,11 +35,58 @@ const Products = ({
             key={product.id}
             product={product}
             handleAddToCart={handleAddToCart}
+            openModal={openModal}
           />
         ))}
       </ul>
+      {modalItem && (
+        <Modal isOpen={true} onRequestClose={closeModal}>
+          <Zoom>
+            <Button onClick={closeModal} className="close-modal">
+              X
+            </Button>
+            <div className="product-details">
+              <img src={modalItem.image} alt={modalItem.title} />
+              <div className="product-details-desc">
+                <p>
+                  {" "}
+                  <strong> {modalItem.title}</strong>
+                </p>
+                <p>{modalItem.description}</p>
+                <p>
+                  Category: &nbsp;{" "}
+                  <span className="cat">{modalItem.category} </span>
+                </p>
+                <div className="rating">
+                  <StarRatings
+                    rating={modalItem?.rating.rate}
+                    starRatedColor="blue"
+                    numberOfStars={5}
+                    name="rating"
+                    starDimension="15px"
+                    starSpacing="5px"
+                  />{" "}
+                  <span>{modalItem.rating.count} reviews </span>
+                </div>
+                <div className="product-price">
+                  <div>{formatCurrency(modalItem.price)}</div>
+                  <Button
+                    variant="warning"
+                    className="button"
+                    onClick={() => {
+                      handleAddToCart(modalItem);
+                      closeModal();
+                    }}
+                  >
+                    Add to cart
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Zoom>
+        </Modal>
+      )}
     </div>
-    // </Fade>
   );
 };
 
