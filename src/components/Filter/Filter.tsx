@@ -1,24 +1,41 @@
 import { Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterCategory,
+  searchProducts,
+  sortProducts,
+} from "../../redux/actions/productActions";
+import { RootStateType } from "../../redux/reducers/rootReducer";
 import "./Filter.css";
 
-type FilterProps = {
-  count: number;
-  sort: string;
-  category: string;
-  keyword: string;
-  handleSortProducts: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  handleFilterProducts: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  handleSearchProducts: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
-const Filter = ({
-  count,
-  sort,
-  handleSortProducts,
-  handleFilterProducts,
-  category,
-  keyword,
-  handleSearchProducts,
-}: FilterProps) => {
+const Filter = () => {
+  const category = useSelector(
+    (state: RootStateType) => state.productReducer.category
+  );
+  const sort = useSelector((state: RootStateType) => state.productReducer.sort);
+  const keyword = useSelector(
+    (state: RootStateType) => state.productReducer.keyword
+  );
+  const products = useSelector(
+    (state: RootStateType) => state.productReducer.filteredProducts
+  );
+  const count = products.length;
+  const dispatch = useDispatch();
+
+  const handleSortProducts = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(sortProducts(event.target.value));
+  };
+
+  const handleFilterCategory = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    dispatch(filterCategory(event.target.value));
+  };
+
+  const handleSearchProducts = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(searchProducts(event.target.value));
+  };
+
   return (
     <div className="filter">
       <div className="filter-count">{count} Products.</div>
@@ -33,7 +50,7 @@ const Filter = ({
       </div>
       <div className="filter-cat">
         Categories{" "}
-        <select value={category} onChange={handleFilterProducts}>
+        <select value={category} onChange={handleFilterCategory}>
           <option value="all">All</option>
           <option value="electronics">Electronics</option>
           <option value="men's clothing">Men's Clothing</option>
